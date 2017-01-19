@@ -12,7 +12,10 @@ import java.util.List;
 
 import static postal_label_generator_service.PdfCreator.convertPostalDataToPdf;
 
-
+/**
+ * @author      Áron Kékes kekes.aron@gmail.com
+ * @version     1.0
+ */
 public class PostalLabelServiceController {
 
     private static PostalLabelServiceController INSTANCE;
@@ -26,6 +29,16 @@ public class PostalLabelServiceController {
 
     private PostalLabelServiceController() {}
 
+    /**
+     * This method gets the data from request body, calls convertPostalDataToPdf
+     * @see PdfCreator
+     * which creates a pdf from it, and sends it in HTTP response as byte[]
+     * @param request HTTP request from a user of our API (contains the postal data in request body)
+     * @param response HTTP response contains the pdf in byte[] format
+     * @return it returns the standard response for successful HTTP requests (200)
+     * @throws JSONException
+     * @throws IOException
+     */
     public int getPostalData(Request request, Response response) throws JSONException, IOException {
         JSONObject json = new JSONObject(request.body());
         List<String> postalData = new ArrayList<>();
